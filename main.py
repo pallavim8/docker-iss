@@ -39,9 +39,9 @@ def get_iss_location():
         lat = r['iss_position']['latitude']
 
         # log output for visibility
-        logger.info("Timestamp: " + dtime)
-        logger.info("Longitude: " + long)
-        logger.info("Latitude: " + lat)
+        logger.info("timestamp: " + dtime)
+        logger.info("longitude: " + long)
+        logger.info("latitude: " + lat)
 
         # write output to mongo db
         write_to_mongo(dtime, long, lat)
@@ -65,7 +65,7 @@ def write_to_mongo(dtime, long, lat):
         client = MongoClient(connection_string)
 
         # use your UVA computing ID for the database name
-        db = client['mst3k']
+        db = client['jmf5em']
         collection = db['locations']
         collection.insert_one({'timestamp': dtime, 'longitude': long, 'latitude': lat})
         logger.info('Output written to MongoDB')
